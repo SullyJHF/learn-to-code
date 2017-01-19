@@ -25,6 +25,19 @@ public class Game extends JFrame implements Runnable {
   }
 
   public synchronized void start() {
+    if (running) return;
+    running = true;
+    thread = new Thread(this);
+    thread.start();
+  }
 
+  public synchronized void stop() {
+    if (!running) return;
+    running = false;
+    try {
+      thread.join();
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
   }
 }
