@@ -7,12 +7,17 @@ public class Game extends JFrame implements Runnable {
   private Screen screen;
   private boolean running = false;
   private final int UPS = 120;
+  private InputHandler inputHandler;
 
   public Game() {
     super("Game Loop");
 
     screen = new Screen();
     add(screen);
+
+    inputHandler = new InputHandler();
+    addKeyListener(inputHandler);
+    addFocusListener(inputHandler);
 
     pack();
     setLocationRelativeTo(null);
