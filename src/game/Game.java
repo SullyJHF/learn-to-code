@@ -56,9 +56,11 @@ public class Game extends JFrame implements Runnable {
       if ((curTime - nextTime) > maxTimeDiff) nextTime = curTime;
       if (curTime >= nextTime) {
         // do update code, this will get run UPS times a second
+        screen.tick(inputHandler.keys);
         nextTime += secondsPerTick;
         if ((curTime < nextTime) || (skippedFrames > maxSkippedFrames)) {
           // do rendering code
+          screen.render();
           skippedFrames = 1;
         } else {
           ++skippedFrames;
