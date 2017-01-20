@@ -19,6 +19,6 @@ public class BodyPiece {
   }
 
   public void draw(Graphics2D g2d) {
-    g2d.fillRect(cellX, cellY, Snake.SIZE, Snake.SIZE);
+    g2d.fillRect(cellX + Snake.BORDER, cellY + Snake.BORDER, Snake.SIZE - 2 * Snake.BORDER, Snake.SIZE - 2 * Snake.BORDER);
   }
 }

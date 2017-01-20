@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 public class Snake {
   protected static final int SIZE = 20;
+  protected static final int BORDER = 1;
 
   private double x;
   private double y;
@@ -37,7 +38,7 @@ public class Snake {
   }
 
   public void draw(Graphics2D g2d) {
-    g2d.fillRect(cellX, cellY, SIZE, SIZE);
+    g2d.fillRect(cellX + BORDER, cellY + BORDER, SIZE - 2 * BORDER, SIZE - 2 * BORDER);
     for (BodyPiece bp : body) {
       bp.draw(g2d);
     }
