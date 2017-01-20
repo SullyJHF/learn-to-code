@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class Food {
   private Random r;
-  private final int SIZE = 20;
+  private final int SIZE = Snake.SIZE;
   private int x, y;
   public int cellX, cellY;
 
