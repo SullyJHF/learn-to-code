@@ -85,7 +85,10 @@ public class Snake {
     if (food.cellX == cellX && food.cellY == cellY) {
       ++this.score;
       food.update();
-      body.add(new BodyPiece(cellX, cellY));
+      if (body.size() < 1)
+        body.add(new BodyPiece(prevCellX, prevCellY));
+      else
+        body.add(new BodyPiece(body.get(body.size() - 1).prevCellX, body.get(body.size() - 1).prevCellY));
     }
   }
 }
