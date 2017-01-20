@@ -2,6 +2,8 @@ package game;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 import javax.swing.JPanel;
 
@@ -12,5 +14,23 @@ public class Screen extends JPanel {
   public Screen() {
     setPreferredSize(new Dimension(WIDTH, HEIGHT));
     setBackground(Color.GRAY);
+  }
+
+  private void draw(Graphics g) {
+    Graphics2D g2d = (Graphics2D) g.create();
+  }
+
+  public void tick(boolean[] keys) {
+
+  }
+
+  public void render() {
+    repaint();
+  }
+
+  @Override
+  public void paintComponent(Graphics g) {
+    super.paintComponent(g);
+    draw(g);
   }
 }
