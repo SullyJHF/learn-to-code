@@ -15,11 +15,14 @@ public class Snake {
   private double xVel = 1.0;
   private double yVel = 0.0;
 
+  private int score;
+
   public Snake() {
     this.x = 100;
     this.y = 100;
     this.cellX = this.x;
     this.cellY = this.y;
+    this.score = 0;
   }
 
   public void draw(Graphics2D g2d) {
@@ -52,6 +55,7 @@ public class Snake {
 
   public void eat(Food food) {
     if (food.cellX == cellX && food.cellY == cellY) {
+      ++this.score;
       food.update();
     }
   }
