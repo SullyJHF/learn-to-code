@@ -16,7 +16,7 @@ public class Snake {
   public int cellX;
   public int cellY;
 
-  private double speed = 1.5;
+  private double speed = 1.0;
 
   private double xVel = speed;
   private double yVel = 0.0;
@@ -28,8 +28,8 @@ public class Snake {
   public Snake() {
     this.x = 100;
     this.y = 100;
-    this.cellX = (int)this.x;
-    this.cellY = (int)this.y;
+    this.cellX = (int) this.x;
+    this.cellY = (int) this.y;
     this.prevCellX = this.cellX;
     this.prevCellY = this.cellY;
     body = new ArrayList<BodyPiece>(0);
@@ -65,12 +65,12 @@ public class Snake {
 
     x += xVel;
     y += yVel;
-    cellX = (int)(x / SIZE) * SIZE;
-    cellY = (int)(y / SIZE) * SIZE;
+    cellX = (int) (x / SIZE) * SIZE;
+    cellY = (int) (y / SIZE) * SIZE;
     if (cellX != prevCellX || cellY != prevCellY) {
       // This has to be done because for most ticks the previous cellX is the same as the current cellX
       // because we're moving at 'subpixels'
-      if(body.size() > 0) {
+      if (body.size() > 0) {
         body.get(0).update(prevCellX, prevCellY);
       }
       for (int i = 0; i < body.size() - 1; i++) {
