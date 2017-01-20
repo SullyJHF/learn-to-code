@@ -38,7 +38,11 @@ public class Snake {
   }
 
   public void draw(Graphics2D g2d) {
-    g2d.fillRect(cellX + BORDER, cellY + BORDER, SIZE - 2 * BORDER, SIZE - 2 * BORDER);
+    g2d.fillRect(
+        cellX + BORDER,
+        cellY + BORDER,
+        SIZE - 2 * BORDER,
+        SIZE - 2 * BORDER);
     for (BodyPiece bp : body) {
       bp.draw(g2d);
     }
