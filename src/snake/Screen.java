@@ -25,6 +25,8 @@ public class Screen extends JPanel {
 
   public static List<Entity> walls;
 
+  public boolean gameOver = false;
+
   public Screen() {
     setPreferredSize(new Dimension(WIDTH, HEIGHT));
     setBackground(Color.GRAY);
@@ -54,6 +56,7 @@ public class Screen extends JPanel {
     snake.eat(food);
     if(snake.isDead()) {
       // gameover code here
+      gameOver = true;
     }
   }
 
