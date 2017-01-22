@@ -5,6 +5,8 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
+import snake.Screen;
+
 public class Snake extends Entity {
   protected static final int SIZE = 20;
   protected static final int BORDER = 1;
@@ -23,6 +25,8 @@ public class Snake extends Entity {
   public List<BodyPiece> body;
 
   private int score;
+
+  private boolean dead = false;
 
   public Snake() {
     this.x = 100;
@@ -84,6 +88,9 @@ public class Snake extends Entity {
         body.get(i + 1).move(body.get(i).prevCellX, body.get(i).prevCellY);
       }
     }
+    if(collide(Screen.walls) || selfCollide(body)) {
+      dead = true;
+    }
   }
 
   public void eat(Food food) {
@@ -98,11 +105,15 @@ public class Snake extends Entity {
   }
 
   // Custom collide that calls collide on each Entity
-  public boolean collide(List<BodyPiece> body) {
+  public boolean selfCollide(List<BodyPiece> body) {
     boolean hit = false;
     for(BodyPiece e : body) {
       hit |= super.collide(e);
     }
     return hit;
+  }
+
+  public boolean isDead() {
+    return dead;
   }
 }

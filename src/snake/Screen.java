@@ -23,7 +23,7 @@ public class Screen extends JPanel {
 
   private Food food;
 
-  private List<Entity> walls;
+  public static List<Entity> walls;
 
   public Screen() {
     setPreferredSize(new Dimension(WIDTH, HEIGHT));
@@ -52,8 +52,8 @@ public class Screen extends JPanel {
   public void tick(boolean[] keys) {
     snake.update(keys);
     snake.eat(food);
-    if(snake.collide(snake.body)) {
-      // game over code goes here
+    if(snake.isDead()) {
+      // gameover code here
     }
   }
 

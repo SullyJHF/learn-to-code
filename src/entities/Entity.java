@@ -1,6 +1,7 @@
 package entities;
 
 import java.awt.Graphics2D;
+import java.util.List;
 import java.util.Random;
 
 public class Entity {
@@ -27,6 +28,14 @@ public class Entity {
   public void update(boolean[] keys) {}
 
   public void draw(Graphics2D g2d) {}
+
+  public boolean collide(List<Entity> entities) {
+    boolean hit = false;
+    for(Entity e : entities) {
+      hit |= collide(e);
+    }
+    return hit;
+  }
 
   public boolean collide(Entity entity) {
     if (entity.cellX == this.cellX && entity.cellY == this.cellY)
