@@ -4,7 +4,7 @@ import java.awt.Graphics2D;
 import java.util.Random;
 
 public class Entity {
-  public static Random r;
+  public Random r;
   protected int cellX, cellY;
 
   public Entity() {
