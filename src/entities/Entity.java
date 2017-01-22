@@ -24,6 +24,8 @@ public class Entity {
 
   public void update() {}
 
+  public void update(boolean[] keys) {}
+
   public void draw(Graphics2D g2d) {}
 
   public boolean collide(Entity entity) {

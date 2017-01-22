@@ -3,8 +3,9 @@ package entities;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.List;
 
-public class Snake {
+public class Snake extends Entity {
   protected static final int SIZE = 20;
   protected static final int BORDER = 1;
 
@@ -14,15 +15,12 @@ public class Snake {
   public int prevCellX;
   public int prevCellY;
 
-  public int cellX;
-  public int cellY;
-
   private double speed = 1.0;
 
   private double xVel = speed;
   private double yVel = 0.0;
 
-  private ArrayList<BodyPiece> body;
+  private List<BodyPiece> body;
 
   private int score;
 
@@ -37,6 +35,7 @@ public class Snake {
     this.score = 0;
   }
 
+  @Override
   public void draw(Graphics2D g2d) {
     g2d.fillRect(
         cellX + BORDER,
@@ -48,6 +47,7 @@ public class Snake {
     }
   }
 
+  @Override
   public void update(boolean[] keys) {
     prevCellX = cellX;
     prevCellY = cellY;
@@ -76,18 +76,18 @@ public class Snake {
       // This has to be done because for most ticks the previous cellX is the same as the current cellX
       // because we're moving at 'subpixels'
       if (body.size() > 0) {
-        body.get(0).update(prevCellX, prevCellY);
+        body.get(0).move(prevCellX, prevCellY);
       }
       for (int i = 0; i < body.size() - 1; i++) {
         // 0 is the first body part
         // however it has a pos of 1
-        body.get(i + 1).update(body.get(i).prevCellX, body.get(i).prevCellY);
+        body.get(i + 1).move(body.get(i).prevCellX, body.get(i).prevCellY);
       }
     }
   }
 
   public void eat(Food food) {
-    if (food.cellX == cellX && food.cellY == cellY) {
+    if(collide(food)) {
       ++this.score;
       food.update();
       if (body.size() < 1)
