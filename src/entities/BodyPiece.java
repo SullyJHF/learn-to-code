@@ -1,4 +1,4 @@
-package snake;
+package entities;
 
 import java.awt.Graphics2D;
 
