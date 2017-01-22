@@ -10,7 +10,7 @@ public class Game extends JFrame implements Runnable {
   private InputHandler inputHandler;
 
   public Game() {
-    super("Game Loop");
+    super("Snake");
 
     screen = new Screen();
     add(screen);
