@@ -20,7 +20,7 @@ public class Snake extends Entity {
   private double xVel = speed;
   private double yVel = 0.0;
 
-  private List<BodyPiece> body;
+  public List<BodyPiece> body;
 
   private int score;
 
@@ -95,5 +95,14 @@ public class Snake extends Entity {
       else
         body.add(new BodyPiece(body.get(body.size() - 1).prevCellX, body.get(body.size() - 1).prevCellY));
     }
+  }
+
+  // Custom collide that calls collide on each Entity
+  public boolean collide(List<BodyPiece> body) {
+    boolean hit = false;
+    for(BodyPiece e : body) {
+      hit |= super.collide(e);
+    }
+    return hit;
   }
 }
