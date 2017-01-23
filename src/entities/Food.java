@@ -27,5 +27,10 @@ public class Food extends Entity {
     y = r.nextInt(Screen.HEIGHT);
     cellX = x / SIZE * SIZE;
     cellY = y / SIZE * SIZE;
+    for(Entity wall : Screen.walls) {
+      if(cellX == wall.cellX && cellY == wall.cellY) {
+        update();
+      }
+    }
   }
 }

@@ -32,9 +32,9 @@ public class Screen extends JPanel {
     setPreferredSize(new Dimension(WIDTH, HEIGHT));
     setBackground(Color.GRAY);
     snake = new Snake();
-    food = new Food();
     level = new Level();
     walls = level.loadLevel("outline");
+    food = new Food();
   }
 
   private void draw(Graphics g) {
