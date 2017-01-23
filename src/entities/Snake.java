@@ -8,7 +8,7 @@ import java.util.List;
 import snake.Screen;
 
 public class Snake extends Entity {
-  protected static final int SIZE = 20;
+  public static final int SIZE = 20;
   protected static final int BORDER = 1;
 
   private double x;
@@ -55,6 +55,7 @@ public class Snake extends Entity {
   public void update(boolean[] keys) {
     prevCellX = cellX;
     prevCellY = cellY;
+
     if (keys[KeyEvent.VK_RIGHT] && xVel != -speed) {
       xVel = speed;
       yVel = 0;
@@ -76,6 +77,7 @@ public class Snake extends Entity {
     y += yVel;
     cellX = (int) (x / SIZE) * SIZE;
     cellY = (int) (y / SIZE) * SIZE;
+
     if (cellX != prevCellX || cellY != prevCellY) {
       // This has to be done because for most ticks the previous cellX is the same as the current cellX
       // because we're moving at 'subpixels'
