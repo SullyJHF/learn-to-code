@@ -34,7 +34,7 @@ public class Screen extends JPanel {
     food = new Food();
     walls = new ArrayList<Entity>();
 
-    for(int i = 0; i < 10; i++) {
+    for (int i = 0; i < 10; i++) {
       Wall wall = new Wall();
       wall.setPosition(wall.r.nextInt(WIDTH), wall.r.nextInt(HEIGHT));
       walls.add(wall);
@@ -46,7 +46,7 @@ public class Screen extends JPanel {
     g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
     snake.draw(g2d);
     food.draw(g2d);
-    for(Entity wall : walls) {
+    for (Entity wall : walls) {
       wall.draw(g2d);
     }
   }
@@ -54,7 +54,7 @@ public class Screen extends JPanel {
   public void tick(boolean[] keys) {
     snake.update(keys);
     snake.eat(food);
-    if(snake.isDead()) {
+    if (snake.isDead()) {
       // gameover code here
       gameOver = true;
     }

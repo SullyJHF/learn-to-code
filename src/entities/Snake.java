@@ -87,14 +87,14 @@ public class Snake extends Entity {
         // however it has a pos of 1
         body.get(i + 1).move(body.get(i).prevCellX, body.get(i).prevCellY);
       }
-    }
-    if(collide(Screen.walls) || selfCollide(body)) {
-      dead = true;
+      if (collide(Screen.walls) || selfCollide(body)) {
+        dead = true;
+      }
     }
   }
 
   public void eat(Food food) {
-    if(collide(food)) {
+    if (collide(food)) {
       ++this.score;
       food.update();
       if (body.size() < 1)
@@ -107,7 +107,7 @@ public class Snake extends Entity {
   // Custom collide that calls collide on each Entity
   public boolean selfCollide(List<BodyPiece> body) {
     boolean hit = false;
-    for(BodyPiece e : body) {
+    for (BodyPiece e : body) {
       hit |= super.collide(e);
     }
     return hit;

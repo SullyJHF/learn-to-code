@@ -31,7 +31,7 @@ public class Entity {
 
   public boolean collide(List<Entity> entities) {
     boolean hit = false;
-    for(Entity e : entities) {
+    for (Entity e : entities) {
       hit |= collide(e);
     }
     return hit;
