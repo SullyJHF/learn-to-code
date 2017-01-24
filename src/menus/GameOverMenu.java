@@ -11,32 +11,36 @@ import snake.Screen;
 public class GameOverMenu extends Menu {
   private String title;
   private Color titleColor;
-  private Font font;
+  private Font titleFont;
+  private Font scoreFont;
   private String score;
 
   public GameOverMenu(int score) {
     this.title = "GAME OVER";
     this.titleColor = new Color(255, 255, 255);
-    this.font = new Font("Agency FB", Font.BOLD, 96);
+    this.titleFont = new Font("Agency FB", Font.BOLD, 96);
+    this.scoreFont = new Font("Agency FB", Font.PLAIN, 72);
     this.score = String.valueOf(score);
   }
 
   @Override
   public void render(Graphics2D g2d) {
-    FontMetrics metrics = g2d.getFontMetrics(font);
-    int titleWidth = metrics.stringWidth(title);
+    FontMetrics titleMetrics = g2d.getFontMetrics(titleFont);
+    int titleWidth = titleMetrics.stringWidth(title);
     int titleX = Screen.WIDTH / 2 - titleWidth / 2;
-    int titleY = titleX;
+    int titleY = titleMetrics.getHeight();
 
-    int scoreWidth = metrics.stringWidth(score);
+    FontMetrics scoreMetrics = g2d.getFontMetrics(scoreFont);
+    int scoreWidth = scoreMetrics.stringWidth(score);
     int scoreX = Screen.WIDTH / 2 - scoreWidth / 2;
     int scoreY = titleY + 100;
 
     g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
-    g2d.setFont(font);
+    g2d.setFont(titleFont);
     g2d.setColor(titleColor);
     g2d.drawString(title, titleX, titleY);
+    g2d.setFont(scoreFont);
     g2d.drawString(score, scoreX, scoreY);
   }
 }
