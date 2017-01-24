@@ -22,6 +22,13 @@ public class Snake extends Entity {
   private double xVel = speed;
   private double yVel = 0.0;
 
+  private enum D {
+    UP, RIGHT, DOWN, LEFT
+  };
+
+  private D dir = D.RIGHT;
+  private D prevDir;
+
   public List<BodyPiece> body;
 
   public int score;
@@ -35,7 +42,7 @@ public class Snake extends Entity {
     this.cellY = (int) this.y;
     this.prevCellX = this.cellX;
     this.prevCellY = this.cellY;
-    body = new ArrayList<BodyPiece>(0);
+    this.body = new ArrayList<BodyPiece>(0);
     this.score = 0;
   }
 
@@ -56,27 +63,20 @@ public class Snake extends Entity {
     prevCellX = cellX;
     prevCellY = cellY;
 
-    if (keys[KeyEvent.VK_RIGHT] && xVel != -speed) {
-      xVel = speed;
-      yVel = 0;
+    if (keys[KeyEvent.VK_RIGHT]) {
+      dir = D.RIGHT;
     }
-    if (keys[KeyEvent.VK_LEFT] && xVel != speed) {
-      xVel = -speed;
-      yVel = 0;
+    if (keys[KeyEvent.VK_LEFT]) {
+      dir = D.LEFT;
     }
-    if (keys[KeyEvent.VK_UP] && yVel != speed) {
-      xVel = 0;
-      yVel = -speed;
+    if (keys[KeyEvent.VK_UP]) {
+      dir = D.UP;
     }
-    if (keys[KeyEvent.VK_DOWN] && yVel != -speed) {
-      xVel = 0;
-      yVel = speed;
+    if (keys[KeyEvent.VK_DOWN]) {
+      dir = D.DOWN;
     }
 
-    x += xVel;
-    y += yVel;
-    cellX = (int) (x / SIZE) * SIZE;
-    cellY = (int) (y / SIZE) * SIZE;
+    move();
 
     if (cellX != prevCellX || cellY != prevCellY) {
       // This has to be done because for most ticks the previous cellX is the same as the current cellX
@@ -105,6 +105,40 @@ public class Snake extends Entity {
       else
         body.add(new BodyPiece(body.get(body.size() - 1).prevCellX, body.get(body.size() - 1).prevCellY));
     }
+  }
+
+  public void move() {
+    if ((dir == D.RIGHT && prevDir == D.LEFT) ||
+        (dir == D.LEFT && prevDir == D.RIGHT) ||
+        (dir == D.UP && prevDir == D.DOWN) ||
+        (dir == D.DOWN && prevDir == D.UP)) {
+      dir = prevDir;
+    } else {
+      switch (dir) {
+      case UP:
+        xVel = 0;
+        yVel = -speed;
+        break;
+      case RIGHT:
+        xVel = speed;
+        yVel = 0;
+        break;
+      case DOWN:
+        xVel = 0;
+        yVel = speed;
+        break;
+      case LEFT:
+        xVel = -speed;
+        yVel = 0;
+        break;
+      }
+      prevDir = dir;
+    }
+
+    x += xVel;
+    y += yVel;
+    cellX = (int) (x / SIZE) * SIZE;
+    cellY = (int) (y / SIZE) * SIZE;
   }
 
   // Custom collide that calls collide on each Entity
