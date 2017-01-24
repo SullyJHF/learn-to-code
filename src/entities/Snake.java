@@ -29,7 +29,7 @@ public class Snake extends Entity {
   private D dir = D.RIGHT;
   private D prevDir;
 
-  public List<BodyPiece> body;
+  public static List<BodyPiece> body;
 
   public int score;
 

@@ -28,7 +28,12 @@ public class Food extends Entity {
     cellX = x / SIZE * SIZE;
     cellY = y / SIZE * SIZE;
     for(Entity wall : Screen.walls) {
-      if(cellX == wall.cellX && cellY == wall.cellY) {
+      if(collide(wall)) {
+        update();
+      }
+    }
+    for(Entity bodyPiece : Snake.body) {
+      if(collide(bodyPiece)) {
         update();
       }
     }
