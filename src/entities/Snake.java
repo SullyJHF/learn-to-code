@@ -100,12 +100,12 @@ public class Snake extends Entity {
   public void eat(Food food) {
     if (collide(food)) {
       ++this.score;
-      food.update();
       speed += speed * 0.05;
       if (body.size() < 1)
-        body.add(new BodyPiece(prevCellX, prevCellY));
+        body.add(new BodyPiece(prevCellX, prevCellY, food.color));
       else
-        body.add(new BodyPiece(body.get(body.size() - 1).prevCellX, body.get(body.size() - 1).prevCellY));
+        body.add(new BodyPiece(body.get(body.size() - 1).prevCellX, body.get(body.size() - 1).prevCellY, food.color));
+      food.update();
     }
   }
 

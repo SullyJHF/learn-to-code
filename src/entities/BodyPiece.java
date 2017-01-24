@@ -1,13 +1,16 @@
 package entities;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 
 public class BodyPiece extends Entity {
   public int prevCellX, prevCellY;
+  public Color color;
 
-  public BodyPiece(int cellX, int cellY) {
+  public BodyPiece(int cellX, int cellY, Color color) {
     this.cellX = cellX;
     this.cellY = cellY;
+    this.color = color;
   }
 
   public void move(int nextCellX, int nextCellY) {
@@ -19,6 +22,7 @@ public class BodyPiece extends Entity {
 
   @Override
   public void draw(Graphics2D g2d) {
+    g2d.setColor(this.color);
     g2d.fillRect(
         cellX + Snake.BORDER,
         cellY + Snake.BORDER,

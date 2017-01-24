@@ -12,7 +12,7 @@ import snake.Screen;
 public class Food extends Entity {
   private final int SIZE = Snake.SIZE;
   private int x, y;
-  private Color color;
+  public Color color;
 
   public Food() {
     r = new Random();
