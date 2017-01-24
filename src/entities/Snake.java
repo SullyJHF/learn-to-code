@@ -42,7 +42,7 @@ public class Snake extends Entity {
     this.cellY = (int) this.y;
     this.prevCellX = this.cellX;
     this.prevCellY = this.cellY;
-    this.body = new ArrayList<BodyPiece>(0);
+    Snake.body = new ArrayList<BodyPiece>(0);
     this.score = 0;
   }
 
