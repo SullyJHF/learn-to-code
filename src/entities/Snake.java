@@ -99,6 +99,7 @@ public class Snake extends Entity {
     if (collide(food)) {
       ++this.score;
       food.update();
+      speed += speed * 0.05;
       if (body.size() < 1)
         body.add(new BodyPiece(prevCellX, prevCellY));
       else
