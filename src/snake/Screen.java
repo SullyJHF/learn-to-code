@@ -13,6 +13,8 @@ import entities.Entity;
 import entities.Food;
 import entities.Snake;
 import levels.Level;
+import menus.GameOverMenu;
+import menus.Menu;
 
 public class Screen extends JPanel {
   public static final int WIDTH = 600;
@@ -28,6 +30,8 @@ public class Screen extends JPanel {
 
   private Level level;
 
+  private Menu menu;
+
   public Screen() {
     setPreferredSize(new Dimension(WIDTH, HEIGHT));
     setBackground(Color.GRAY);
@@ -40,6 +44,9 @@ public class Screen extends JPanel {
   private void draw(Graphics g) {
     Graphics2D g2d = (Graphics2D) g.create();
     g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+    if (menu != null) {
+      menu.render(g2d);
+    }
     snake.draw(g2d);
     food.draw(g2d);
     for (Entity wall : walls) {
@@ -48,12 +55,18 @@ public class Screen extends JPanel {
   }
 
   public void tick(boolean[] keys) {
-    snake.update(keys);
-    snake.eat(food);
     if (snake.isDead()) {
       // gameover code here
+      setMenu(new GameOverMenu());
       gameOver = true;
+      render();
     }
+    snake.update(keys);
+    snake.eat(food);
+  }
+
+  public void setMenu(Menu menu) {
+    this.menu = menu;
   }
 
   public void render() {
