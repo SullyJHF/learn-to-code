@@ -22,7 +22,7 @@ public class Wall extends Entity {
 
   @Override
   public void draw(Graphics2D g2d) {
-    g2d.setColor(new Color(200, 200, 200));
+    g2d.setColor(new Color(75, 75, 75));
     g2d.fillRect(cellX, cellY, SIZE, SIZE);
   }
 }
