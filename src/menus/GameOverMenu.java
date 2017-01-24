@@ -9,7 +9,7 @@ import java.awt.RenderingHints;
 import snake.Screen;
 
 public class GameOverMenu extends Menu {
-  private String[] options = { "RESTART", "BACK TO TITLE", "END GAME" };
+  private String[] options = { "RESTART", "BACK TO TITLE", "QUIT GAME" };
   private int selected = 0;
   private String title;
   private Color titleColor;
