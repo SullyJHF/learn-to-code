@@ -15,7 +15,7 @@ import entities.Snake;
 import levels.Level;
 
 public class Screen extends JPanel {
-  public static final int WIDTH = 800;
+  public static final int WIDTH = 600;
   public static final int HEIGHT = 600;
 
   private Snake snake;
