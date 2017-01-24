@@ -30,6 +30,7 @@ public class Snake extends Entity {
   private D prevDir;
 
   public static List<BodyPiece> body;
+  public static Entity self;
 
   public int score;
 
@@ -43,6 +44,7 @@ public class Snake extends Entity {
     this.prevCellX = this.cellX;
     this.prevCellY = this.cellY;
     Snake.body = new ArrayList<BodyPiece>(0);
+    Snake.self = this;
     this.score = 0;
   }
 
