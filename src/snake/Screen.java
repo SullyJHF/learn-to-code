@@ -49,20 +49,17 @@ public class Screen extends JPanel {
     for (Entity wall : walls) {
       wall.draw(g2d);
     }
-    if (menu != null) {
-      menu.render(g2d);
-    }
   }
 
   public void tick(boolean[] keys) {
+    snake.update(keys);
+    snake.eat(food);
     if (snake.isDead()) {
       // gameover code here
       setMenu(new GameOverMenu());
       gameOver = true;
-      render();
+      menu.render((Graphics2D) getGraphics());
     }
-    snake.update(keys);
-    snake.eat(food);
   }
 
   public void setMenu(Menu menu) {
