@@ -17,6 +17,8 @@ import menus.GameOverMenu;
 import menus.Menu;
 
 public class Screen extends JPanel {
+  public static Screen self;
+
   public static final int WIDTH = 600;
   public static final int HEIGHT = 600;
 
@@ -33,8 +35,16 @@ public class Screen extends JPanel {
   private Menu menu;
 
   public Screen() {
+    self = this;
     setPreferredSize(new Dimension(WIDTH, HEIGHT));
     setBackground(Color.GRAY);
+    snake = new Snake();
+    level = new Level();
+    walls = level.loadLevel("outline");
+    food = new Food();
+  }
+
+  public void restart() {
     snake = new Snake();
     level = new Level();
     walls = level.loadLevel("outline");
@@ -49,7 +59,7 @@ public class Screen extends JPanel {
     for (Entity wall : walls) {
       wall.draw(g2d);
     }
-    if(menu != null) {
+    if (menu != null) {
       menu.render(g2d);
     }
   }

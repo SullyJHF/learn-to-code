@@ -76,6 +76,23 @@ public class GameOverMenu extends Menu {
       keys[KeyEvent.VK_DOWN] = false;
       selected++;
     }
+    if (keys[KeyEvent.VK_SPACE] || keys[KeyEvent.VK_ENTER]) {
+      keys[KeyEvent.VK_SPACE] = keys[KeyEvent.VK_ENTER] = false;
+      switch (selected) {
+      case 0:
+        Screen.self.setMenu(null);
+        Screen.self.restart();
+        break;
+      case 1:
+        // This will return to the title screen when there is one ;)
+        Screen.self.setMenu(null);
+        Screen.self.restart();
+        break;
+      case 2:
+        System.exit(0);
+        break;
+      }
+    }
 
     if (selected < 0) selected += options.length;
     selected %= options.length;
