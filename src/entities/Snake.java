@@ -24,7 +24,7 @@ public class Snake extends Entity {
 
   public List<BodyPiece> body;
 
-  private int score;
+  public int score;
 
   private boolean dead = false;
 

@@ -56,7 +56,7 @@ public class Screen extends JPanel {
     snake.eat(food);
     if (snake.isDead()) {
       // gameover code here
-      setMenu(new GameOverMenu());
+      setMenu(new GameOverMenu(snake.score));
       gameOver = true;
       menu.render((Graphics2D) getGraphics());
     }
