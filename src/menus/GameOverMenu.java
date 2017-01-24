@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.event.KeyEvent;
 
 import snake.Screen;
 
@@ -67,6 +68,16 @@ public class GameOverMenu extends Menu {
 
   @Override
   public void tick(boolean[] keys) {
+    if (keys[KeyEvent.VK_UP]) {
+      keys[KeyEvent.VK_UP] = false;
+      selected--;
+    }
+    if (keys[KeyEvent.VK_DOWN]) {
+      keys[KeyEvent.VK_DOWN] = false;
+      selected++;
+    }
 
+    if (selected < 0) selected += options.length;
+    selected %= options.length;
   }
 }

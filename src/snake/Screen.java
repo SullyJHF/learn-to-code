@@ -26,7 +26,7 @@ public class Screen extends JPanel {
 
   public static List<Entity> walls;
 
-  public boolean gameOver = false;
+  public boolean paused = false;
 
   private Level level;
 
@@ -49,16 +49,22 @@ public class Screen extends JPanel {
     for (Entity wall : walls) {
       wall.draw(g2d);
     }
+    if(menu != null) {
+      menu.render(g2d);
+    }
   }
 
   public void tick(boolean[] keys) {
-    snake.update(keys);
-    snake.eat(food);
-    if (snake.isDead()) {
-      // gameover code here
-      setMenu(new GameOverMenu(snake.score));
-      gameOver = true;
-      menu.render((Graphics2D) getGraphics());
+    if (menu != null) {
+      menu.tick(keys);
+    } else {
+      snake.update(keys);
+      snake.eat(food);
+      if (snake.isDead()) {
+        // gameover code here
+        setMenu(new GameOverMenu(snake.score));
+        paused = true;
+      }
     }
   }
 

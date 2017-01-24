@@ -57,11 +57,11 @@ public class Game extends JFrame implements Runnable {
       if (curTime >= nextTime) {
         // do update code, this will get run UPS times a second
         screen.tick(inputHandler.keys);
-        if (screen.gameOver) {
-          // show a gameover screen and allow restarting
-          running = false;
-          break;
-        }
+        // if (screen.gameOver) {
+        //   // show a gameover screen and allow restarting
+        //   running = false;
+        //   break;
+        // }
         nextTime += secondsPerTick;
         if ((curTime < nextTime) || (skippedFrames > maxSkippedFrames)) {
           // do rendering code
