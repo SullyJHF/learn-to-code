@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 
 import snake.Screen;
 
@@ -14,9 +15,9 @@ public class GameOverMenu extends Menu {
   private String score;
 
   public GameOverMenu(int score) {
-    this.title = "Game Over";
-    this.titleColor = new Color(21, 21, 21);
-    this.font = new Font("Courier", Font.BOLD, 72);
+    this.title = "GAME OVER";
+    this.titleColor = new Color(255, 255, 255);
+    this.font = new Font("Agency FB", Font.BOLD, 96);
     this.score = String.valueOf(score);
   }
 
@@ -30,6 +31,8 @@ public class GameOverMenu extends Menu {
     int scoreWidth = metrics.stringWidth(score);
     int scoreX = Screen.WIDTH / 2 - scoreWidth / 2;
     int scoreY = titleY + 100;
+
+    g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
     g2d.setFont(font);
     g2d.setColor(titleColor);
