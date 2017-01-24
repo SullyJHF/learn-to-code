@@ -44,13 +44,13 @@ public class Screen extends JPanel {
   private void draw(Graphics g) {
     Graphics2D g2d = (Graphics2D) g.create();
     g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-    if (menu != null) {
-      menu.render(g2d);
-    }
     snake.draw(g2d);
     food.draw(g2d);
     for (Entity wall : walls) {
       wall.draw(g2d);
+    }
+    if (menu != null) {
+      menu.render(g2d);
     }
   }
 
