@@ -1,5 +1,6 @@
 package entities;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -10,6 +11,8 @@ import snake.Screen;
 public class Snake extends Entity {
   public static final int SIZE = 20;
   protected static final int BORDER = 1;
+
+  private Color color;
 
   private double x;
   private double y;
@@ -45,19 +48,21 @@ public class Snake extends Entity {
     this.prevCellY = this.cellY;
     Snake.body = new ArrayList<BodyPiece>(0);
     Snake.self = this;
+    this.color = new Color(51, 51, 51);
     this.score = 0;
   }
 
   @Override
   public void draw(Graphics2D g2d) {
+    for (BodyPiece bp : body) {
+      bp.draw(g2d);
+    }
+    g2d.setColor(color);
     g2d.fillRect(
         cellX + BORDER,
         cellY + BORDER,
         SIZE - 2 * BORDER,
         SIZE - 2 * BORDER);
-    for (BodyPiece bp : body) {
-      bp.draw(g2d);
-    }
   }
 
   @Override
