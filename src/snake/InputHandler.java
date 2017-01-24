@@ -8,12 +8,20 @@ import java.awt.event.KeyListener;
 
 public class InputHandler implements KeyListener, FocusListener {
   public boolean[] keys = new boolean[65536];
+  private Game game;
+
+  public InputHandler(Game game) {
+    this.game = game;
+  }
 
   @Override
   public void keyPressed(KeyEvent e) {
     int code = e.getKeyCode();
     if (code > 0 && code < keys.length) {
       keys[code] = true;
+    }
+    if(keys[KeyEvent.VK_R]) {
+      game.restart();
     }
   }
 

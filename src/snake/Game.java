@@ -15,7 +15,7 @@ public class Game extends JFrame implements Runnable {
     screen = new Screen();
     add(screen);
 
-    inputHandler = new InputHandler();
+    inputHandler = new InputHandler(this);
     addKeyListener(inputHandler);
     addFocusListener(inputHandler);
 
@@ -59,7 +59,7 @@ public class Game extends JFrame implements Runnable {
         screen.tick(inputHandler.keys);
         if (screen.gameOver) {
           // show a gameover screen and allow restarting
-          stop();
+          running = false;
           break;
         }
         nextTime += secondsPerTick;
@@ -81,5 +81,15 @@ public class Game extends JFrame implements Runnable {
         }
       }
     }
+  }
+
+  public synchronized void restart() {
+    if (running) stop();
+    remove(screen);
+    screen = new Screen();
+    add(screen);
+    repaint();
+    revalidate();
+    start();
   }
 }
