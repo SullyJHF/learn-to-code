@@ -2,9 +2,6 @@ package entities;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import java.util.Random;
 
 import snake.Screen;
@@ -13,10 +10,14 @@ public class Food extends Entity {
   private final int SIZE = Snake.SIZE;
   private int x, y;
   public Color color;
+  private float h, s, b;
 
   public Food() {
     r = new Random();
-    color = chooseColour();
+    s = 1.0f;
+    b = 1.0f;
+    h = r.nextFloat();
+    color = new Color(Color.HSBtoRGB(h, s, b));
     update();
   }
 
@@ -28,7 +29,8 @@ public class Food extends Entity {
 
   @Override
   public void update() {
-    color = chooseColour();
+    h += 0.03f;
+    color = new Color(Color.HSBtoRGB(h, s, b));
     x = r.nextInt(Screen.WIDTH);
     y = r.nextInt(Screen.HEIGHT);
     cellX = x / SIZE * SIZE;
@@ -46,20 +48,5 @@ public class Food extends Entity {
     if (collide(Snake.self)) {
       update();
     }
-  }
-
-  private Color chooseColour() {
-    float a = r.nextFloat() / 4 + 0.7f;
-    float b = r.nextFloat() / 4 + 0.1f;
-    float c = r.nextFloat() / 4 + 0.1f;
-    List<Float> colours = new ArrayList<Float>();
-    colours.add(a);
-    colours.add(b);
-    colours.add(c);
-    Collections.shuffle(colours);
-    return new Color(
-        colours.get(0),
-        colours.get(1),
-        colours.get(2));
   }
 }
