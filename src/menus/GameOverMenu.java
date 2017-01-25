@@ -26,6 +26,7 @@ public class GameOverMenu extends Menu {
     this.scoreFont = new Font("Agency FB", Font.PLAIN, 72);
     this.optionsFont = new Font("Agency FB", Font.PLAIN, 48);
     this.score = String.valueOf(score);
+    this.selected = 0;
   }
 
   @Override
@@ -51,17 +52,19 @@ public class GameOverMenu extends Menu {
     FontMetrics optionsMetrics = g2d.getFontMetrics(optionsFont);
     g2d.setFont(optionsFont);
     int optionsY = scoreY + 100;
-    int arrowWidth = optionsMetrics.stringWidth("-> ");
+    int arrowWidth = optionsMetrics.stringWidth("> ");
     for (int i = 0; i < options.length; i++) {
       String option = options[i];
       String output = "";
       int optionWidth = optionsMetrics.stringWidth(option);
       int x = Screen.WIDTH / 2 - optionWidth / 2;
       if (i == selected) {
-        output += "-> ";
+        output += "> " + option + " <";
         x -= arrowWidth;
+      } else {
+        output += option;
       }
-      output += option;
+
       g2d.drawString(output, x, optionsY + i * 50);
     }
   }
