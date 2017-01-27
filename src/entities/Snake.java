@@ -90,11 +90,11 @@ public class Snake extends Entity {
       // because we're moving at 'subpixels'
       if (body.size() > 0) {
         body.get(0).move(prevCellX, prevCellY);
-      }
-      for (int i = 0; i < body.size() - 1; i++) {
-        // 0 is the first body part
-        // however it has a pos of 1
-        body.get(i + 1).move(body.get(i).prevCellX, body.get(i).prevCellY);
+        for (int i = 0; i < body.size() - 1; i++) {
+          // 0 is the first body part
+          // however it has a pos of 1
+          body.get(i + 1).move(body.get(i).prevCellX, body.get(i).prevCellY);
+        }
       }
       if (collide(Screen.walls) || selfCollide(body)) {
         dead = true;
