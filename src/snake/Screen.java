@@ -19,6 +19,8 @@ import menus.Menu;
 public class Screen extends JPanel {
   public static Screen self;
 
+  public static int CELL_SIZE = 20;
+
   public static final int WIDTH = 600;
   public static final int HEIGHT = 600;
 

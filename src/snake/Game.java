@@ -6,7 +6,7 @@ public class Game extends JFrame implements Runnable {
   private Thread thread;
   private Screen screen;
   private boolean running = false;
-  private final int UPS = 120;
+  public static final int UPS = 120;
   private InputHandler inputHandler;
 
   public Game() {
