@@ -3,8 +3,10 @@ package entities;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
+import snake.Screen;
+
 public class Wall extends Entity {
-  private final int SIZE = 20;
+  private final int SIZE = Screen.CELL_SIZE;
 
   public Wall() {
     super();
@@ -15,9 +17,9 @@ public class Wall extends Entity {
   }
 
   @Override
-  public void setPosition(int x, int y) {
-    this.cellX = x / SIZE * SIZE;
-    this.cellY = y / SIZE * SIZE;
+  public void setPosition(int cellX, int cellY) {
+    this.cellX = cellX;
+    this.cellY = cellY;
   }
 
   @Override

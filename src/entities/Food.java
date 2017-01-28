@@ -7,8 +7,7 @@ import java.util.Random;
 import snake.Screen;
 
 public class Food extends Entity {
-  private final int SIZE = Snake.SIZE;
-  private int x, y;
+  private final int SIZE = Screen.CELL_SIZE;
   public Color color;
   private float h, s, b;
 
@@ -31,10 +30,8 @@ public class Food extends Entity {
   public void update() {
     h += 0.03f;
     color = new Color(Color.HSBtoRGB(h, s, b));
-    x = r.nextInt(Screen.WIDTH);
-    y = r.nextInt(Screen.HEIGHT);
-    cellX = x / SIZE * SIZE;
-    cellY = y / SIZE * SIZE;
+    cellX = r.nextInt(Screen.WIDTH / Screen.CELL_SIZE) * Screen.CELL_SIZE;
+    cellY = r.nextInt(Screen.HEIGHT / Screen.CELL_SIZE) * Screen.CELL_SIZE;
     for (Entity wall : Screen.walls) {
       if (collide(wall)) {
         update();

@@ -24,9 +24,6 @@ public class Snake extends Entity {
   private double speed = 6.0;
   private int cellTime;
 
-  private double xVel = speed;
-  private double yVel = 0.0;
-
   private enum D {
     UP, RIGHT, DOWN, LEFT
   };
@@ -42,10 +39,8 @@ public class Snake extends Entity {
   private boolean dead = false;
 
   public Snake() {
-    this.x = 100;
-    this.y = 100;
-    this.cellX = (int) this.x;
-    this.cellY = (int) this.y;
+    this.cellX = 3 * SIZE;
+    this.cellY = 4 * SIZE;
     this.prevCellX = this.cellX;
     this.prevCellY = this.cellY;
     Snake.body = new ArrayList<BodyPiece>(0);
