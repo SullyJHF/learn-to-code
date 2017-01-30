@@ -15,9 +15,6 @@ public class Snake extends Entity {
 
   private Color color;
 
-  private double x;
-  private double y;
-
   public int prevCellX;
   public int prevCellY;
 
