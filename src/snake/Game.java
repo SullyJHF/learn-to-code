@@ -6,8 +6,9 @@ public class Game extends JFrame implements Runnable {
   private Thread thread;
   private Screen screen;
   private boolean running = false;
-  public static final int UPS = 120;
+  public static final int UPS = 60;
   private InputHandler inputHandler;
+  private int tickCount;
 
   public Game() {
     super("Snake");
@@ -27,6 +28,7 @@ public class Game extends JFrame implements Runnable {
 
   public synchronized void start() {
     if (running) return;
+    tickCount = 0;
     running = true;
     thread = new Thread(this);
     thread.start();
@@ -44,6 +46,8 @@ public class Game extends JFrame implements Runnable {
 
   @Override
   public void run() {
+    int frames = 0;
+
     double secondsPerTick = 1.0 / UPS;
 
     double nextTime = System.nanoTime() / 1000000000.0;
@@ -63,9 +67,15 @@ public class Game extends JFrame implements Runnable {
         //   break;
         // }
         nextTime += secondsPerTick;
+        tickCount++;
+        if(tickCount % UPS == 0) {
+          System.out.println(frames + "FPS");
+          frames = 0;
+        }
         if ((curTime < nextTime) || (skippedFrames > maxSkippedFrames)) {
           // do rendering code
           screen.render();
+          frames++;
           skippedFrames = 1;
         } else {
           ++skippedFrames;
