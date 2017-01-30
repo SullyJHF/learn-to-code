@@ -109,7 +109,6 @@ public class Snake extends Entity {
       } else {
         speed = 30;
       }
-      System.out.println(speed);
       if (body.size() < 1)
         body.add(new BodyPiece(prevCellX, prevCellY, food.color));
       else
