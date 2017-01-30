@@ -2,9 +2,11 @@ package entities;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.util.Random;
 
 import snake.Screen;
+import sprites.Apple;
 
 public class Food extends Entity {
   private final int SIZE = Screen.CELL_SIZE;
@@ -17,13 +19,15 @@ public class Food extends Entity {
     b = 1.0f;
     h = r.nextFloat();
     color = new Color(Color.HSBtoRGB(h, s, b));
+    this.sprite = new Apple();
     update();
   }
 
   @Override
   public void draw(Graphics2D g2d) {
     g2d.setColor(color);
-    g2d.fillOval(cellX, cellY, SIZE, SIZE);
+    g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+    g2d.drawImage(sprite.getImg(), cellX, cellY, SIZE, SIZE, null);
   }
 
   @Override

@@ -4,9 +4,12 @@ import java.awt.Graphics2D;
 import java.util.List;
 import java.util.Random;
 
+import sprites.Sprite;
+
 public class Entity {
   public Random r;
   protected int cellX, cellY;
+  public Sprite sprite;
 
   public Entity() {
     this.r = new Random();
