@@ -19,10 +19,10 @@ import menus.Menu;
 public class Screen extends JPanel {
   public static Screen self;
 
-  public static int CELL_SIZE = 20;
+  public static int CELL_SIZE = 30;
 
-  public static final int WIDTH = 600;
-  public static final int HEIGHT = 600;
+  public static final int WIDTH = CELL_SIZE * 21;
+  public static final int HEIGHT = WIDTH;
 
   private Snake snake;
 

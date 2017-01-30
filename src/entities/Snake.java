@@ -18,7 +18,7 @@ public class Snake extends Entity {
   public int prevCellX;
   public int prevCellY;
 
-  private double speed = 6.0;
+  private double speed = 5.0;
   private int cellTime;
 
   private enum D {
@@ -104,7 +104,8 @@ public class Snake extends Entity {
   public void eat(Food food) {
     if (collide(food)) {
       ++this.score;
-      speed += speed * 0.05;
+      if (score % 5 == 0) speed *= 1.1;
+      System.out.println(speed);
       if (body.size() < 1)
         body.add(new BodyPiece(prevCellX, prevCellY, food.color));
       else
