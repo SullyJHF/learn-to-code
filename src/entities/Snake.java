@@ -104,7 +104,11 @@ public class Snake extends Entity {
   public void eat(Food food) {
     if (collide(food)) {
       ++this.score;
-      if (score % 5 == 0) speed *= 1.1;
+      if (speed < 30) {
+        if (score % 5 == 0) speed *= 1.1;
+      } else {
+        speed = 30;
+      }
       System.out.println(speed);
       if (body.size() < 1)
         body.add(new BodyPiece(prevCellX, prevCellY, food.color));
