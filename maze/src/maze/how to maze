@@ -1,0 +1,35 @@
+MAZE
+===
+Simple steps on how to create a maze generator in java
+
+Cell
+---
+1. Need a Cell class to hold data about an individual square on the grid
+2. This will hold its position in the grid (i and j).
+3. Its cell size (static and final)
+4. Need to be able to draw each of its walls individually (array to hold booleans for each side, draw based on this array)
+5. Needs to know whether it has been visited before
+6. Needs to be able to remove one of its walls based on a _next_ cell
+7. Needs to be able to get the current index in the grid arraylist (i + j * cols)
+8. Needs to be able to get the current unvisited neighbours
+
+Screen
+---
+1. Create a number of rows and columns you want based on a cell size
+2. Make width and height fill this size
+3. Make a _grid_ arraylist of cells containing rows * cols number of elements
+4. fill with a new cell at each position (for loop within for loop)
+5. create a stack
+
+Maze generation
+---
+1. Make initial cell the current and mark it visited
+- while there are unvisited cells
+ - if the current cell has neighbours that are not visited
+        1. go to one of those cells at random (next)
+        2. push current to stack
+        3. remove wall between current and next
+        4. make next current and mark visited
+ - else if stack is not empty
+        1. pop a cell from the stack
+        2. make it the current cell
