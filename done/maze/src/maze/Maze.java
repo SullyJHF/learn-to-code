@@ -6,7 +6,7 @@ public class Maze extends JFrame implements Runnable {
   private Thread thread;
   private Screen screen;
   private boolean running = false;
-  private final int UPS = 120;
+  private final int UPS = 30;
 
   public Maze() {
     super("Game Loop");
