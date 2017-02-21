@@ -8,20 +8,29 @@ import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
 public class Screen extends JPanel {
-  private static final int WIDTH = 800;
-  private static final int HEIGHT = 600;
+  static final int WIDTH = 800;
+  static final int HEIGHT = 600;
+
+  private Paddle player1;
+  private Paddle player2;
 
   public Screen() {
     setPreferredSize(new Dimension(WIDTH, HEIGHT));
     setBackground(Color.BLACK);
+
+    player1 = new Paddle(false);
+    player2 = new Paddle(true);
   }
 
   private void draw(Graphics g) {
     Graphics2D g2d = (Graphics2D) g.create();
+    player1.draw(g2d);
+    player2.draw(g2d);
   }
 
   public void tick(boolean[] keys) {
-
+    player1.tick(keys);
+    player2.tick(keys);
   }
 
   public void render() {
