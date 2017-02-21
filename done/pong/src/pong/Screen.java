@@ -2,8 +2,10 @@ package pong;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 
 import javax.swing.JPanel;
 
@@ -37,6 +39,15 @@ public class Screen extends JPanel {
     player1.draw(g2d);
     player2.draw(g2d);
     ball.draw(g2d);
+    printScores(g2d);
+  }
+
+  private void printScores(Graphics2D g2d) {
+    g2d.setColor(Color.WHITE);
+    g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+    g2d.setFont(new Font(g2d.getFont().getFontName(), Font.PLAIN, 36));
+    g2d.drawString(String.valueOf(player1Score), 30, 50);
+    g2d.drawString(String.valueOf(player2Score), 750, 50);
   }
 
   public void tick(boolean[] keys) {
