@@ -37,6 +37,8 @@ public class Screen extends JPanel {
     player1.tick(keys);
     player2.tick(keys);
     ball.tick();
+    ball.collide(player1);
+    ball.collide(player2);
   }
 
   public void render() {

@@ -2,6 +2,9 @@ package pong;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.awt.Shape;
+import java.awt.geom.Rectangle2D;
 import java.util.Random;
 
 public class Ball {
@@ -49,5 +52,16 @@ public class Ball {
 
     this.x += dx;
     this.y += dy;
+  }
+
+  public void collide(Paddle paddle) {
+    if(getBounds().intersects((Rectangle2D) paddle.getBounds())) {
+      this.angle = (float) (2 * Math.PI - this.angle);
+    }
+  }
+
+  public Shape getBounds() {
+    Shape bounds = new Rectangle.Double(this.x, this.y, this.size, this.size);
+    return bounds;
   }
 }

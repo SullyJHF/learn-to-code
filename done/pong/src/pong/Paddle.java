@@ -2,6 +2,8 @@ package pong;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.awt.Shape;
 
 import com.sun.glass.events.KeyEvent;
 
@@ -51,5 +53,10 @@ public class Paddle {
   private void moveDown() {
     if (y + h < Screen.HEIGHT)
       this.y++;
+  }
+
+  public Shape getBounds() {
+    Shape bounds = new Rectangle.Double(this.x, this.y, this.w, this.h);
+    return bounds;
   }
 }
