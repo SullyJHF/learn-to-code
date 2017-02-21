@@ -13,6 +13,8 @@ public class Paddle {
   private float h;
   private Color color;
 
+  private float speed;
+
   private boolean left;
 
   public Paddle(boolean left) {
@@ -21,6 +23,7 @@ public class Paddle {
     this.w = 13;
     this.x = this.left ? this.w : Screen.WIDTH - 2 * this.w;
     this.y = Screen.HEIGHT / 2 - this.h / 2;
+    this.speed = 1.5f;
     this.color = Color.WHITE;
   }
 
@@ -47,12 +50,12 @@ public class Paddle {
 
   private void moveUp() {
     if (y > 0)
-      this.y--;
+      this.y -= this.speed;
   }
 
   private void moveDown() {
     if (y + h < Screen.HEIGHT)
-      this.y++;
+      this.y += this.speed;
   }
 
   public Shape getBounds() {
