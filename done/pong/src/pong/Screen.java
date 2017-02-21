@@ -14,7 +14,10 @@ public class Screen extends JPanel {
   private Paddle player1;
   private Paddle player2;
 
-  private Ball ball;
+  private static int player1Score;
+  private static int player2Score;
+
+  private static Ball ball;
 
   public Screen() {
     setPreferredSize(new Dimension(WIDTH, HEIGHT));
@@ -22,6 +25,9 @@ public class Screen extends JPanel {
 
     player1 = new Paddle(true);
     player2 = new Paddle(false);
+
+    player1Score = 0;
+    player2Score = 0;
 
     ball = new Ball();
   }
@@ -49,5 +55,18 @@ public class Screen extends JPanel {
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
     draw(g);
+  }
+
+  public static void addPoint(boolean b) {
+    if (b) {
+      player1Score++;
+    } else {
+      player2Score++;
+    }
+    reset();
+  }
+
+  private static void reset() {
+    ball = new Ball();
   }
 }

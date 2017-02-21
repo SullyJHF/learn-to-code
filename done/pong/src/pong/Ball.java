@@ -37,9 +37,9 @@ public class Ball {
 
   public void tick() {
     if (this.x + this.size > Screen.WIDTH) {
-      // game over, one point to left
+      Screen.addPoint(true);
     } else if (this.x < 0) {
-      // game over, one point to right
+      Screen.addPoint(false);
     }
 
     if (this.y + this.size > Screen.HEIGHT || this.y < 0) {
@@ -55,7 +55,7 @@ public class Ball {
   }
 
   public void collide(Paddle paddle) {
-    if(getBounds().intersects((Rectangle2D) paddle.getBounds())) {
+    if (getBounds().intersects((Rectangle2D) paddle.getBounds())) {
       this.angle = (float) (2 * Math.PI - this.angle);
     }
   }
