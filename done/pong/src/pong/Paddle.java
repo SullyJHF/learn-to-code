@@ -6,7 +6,7 @@ import java.awt.Graphics2D;
 import com.sun.glass.events.KeyEvent;
 
 public class Paddle {
-  public float x, y;
+  private float x, y;
   private float w;
   private float h;
   private Color color;
