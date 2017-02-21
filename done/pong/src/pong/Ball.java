@@ -18,7 +18,9 @@ public class Ball {
 
   public Ball() {
     Random r = new Random();
-    this.angle = (float) (r.nextFloat() * 2 * Math.PI);
+    this.angle = (float) (Math.PI / 4 + r.nextFloat() * Math.PI);
+    if(this.angle > (3 * Math.PI) / 4) this.angle += Math.PI / 2;
+
     this.size = 13;
     this.speed = 2;
     this.x = Screen.WIDTH / 2 - this.size / 2;
