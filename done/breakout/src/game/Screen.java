@@ -25,7 +25,7 @@ public class Screen extends JPanel {
     setBackground(Color.BLACK);
     paddle = new Paddle();
     ball = new Ball(paddle);
-    brick = new Brick(300, 100);
+    brick = new Brick(20, 230);
   }
 
   private void draw(Graphics g) {
