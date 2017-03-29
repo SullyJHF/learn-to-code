@@ -72,17 +72,20 @@ public class Ball {
   }
 
   public void checkHit(Brick brick) {
+    if (!brick.alive) return;
     if (!getBounds().intersects((Rectangle2D) brick.getBounds())) return;
     Point up = new Point((int) (x + s / 2), (int) y);
     Point right = new Point((int) (x + s), (int) (y + s / 2));
     Point left = new Point((int) x, (int) (y + s / 2));
     Point down = new Point((int) (x + s / 2), (int) (y + s));
 
-    if(brick.getBounds().contains(up) || brick.getBounds().contains(down)) {
+    if (brick.getBounds().contains(up) || brick.getBounds().contains(down)) {
+      brick.destroy();
       this.angle = 2 * Math.PI - this.angle;
     }
 
-    if(brick.getBounds().contains(left) || brick.getBounds().contains(right)) {
+    if (brick.getBounds().contains(left) || brick.getBounds().contains(right)) {
+      brick.destroy();
       this.angle = Math.PI - this.angle;
     }
   }

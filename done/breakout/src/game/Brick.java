@@ -23,11 +23,16 @@ public class Brick {
   }
 
   public void draw(Graphics2D g2d) {
+    if (!alive) return;
     g2d.fillRect((int) x, (int) y, (int) w, (int) h);
   }
 
   public Shape getBounds() {
     Shape bounds = new Rectangle.Double(this.x, this.y, this.w, this.h);
     return bounds;
+  }
+
+  public void destroy() {
+    alive = false;
   }
 }
