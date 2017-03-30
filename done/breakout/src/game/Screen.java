@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
@@ -18,14 +19,17 @@ public class Screen extends JPanel {
 
   private static Ball ball;
 
-  private Brick brick;
+  private ArrayList<Brick> bricks;
 
   public Screen() {
     setPreferredSize(new Dimension(WIDTH, HEIGHT));
     setBackground(Color.BLACK);
     paddle = new Paddle();
     ball = new Ball(paddle);
-    brick = new Brick(20, 230);
+    bricks = new ArrayList<Brick>();
+    for(int i = 0; i < 9; i++) {
+      bricks.add(new Brick(40 + i * 80, 40));
+    }
   }
 
   private void draw(Graphics g) {
@@ -33,13 +37,17 @@ public class Screen extends JPanel {
     g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
     paddle.draw(g2d);
     ball.draw(g2d);
-    brick.draw(g2d);
+    for(Brick b : bricks) {
+      b.draw(g2d);
+    }
   }
 
   public void tick(boolean[] keys) {
     paddle.tick(keys[KeyEvent.VK_LEFT], keys[KeyEvent.VK_RIGHT], keys[KeyEvent.VK_SPACE]);
     ball.tick();
-    ball.checkHit(brick);
+    for(Brick b : bricks) {
+      ball.checkHit(b);
+    }
   }
 
   public void render() {
